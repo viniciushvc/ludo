@@ -1,0 +1,11 @@
+C:\Users\vinic\Desktop\Ludo\bin\Debug\netcoreapp2.0\Ludo.deps.json
+C:\Users\vinic\Desktop\Ludo\bin\Debug\netcoreapp2.0\Ludo.runtimeconfig.json
+C:\Users\vinic\Desktop\Ludo\bin\Debug\netcoreapp2.0\Ludo.runtimeconfig.dev.json
+C:\Users\vinic\Desktop\Ludo\bin\Debug\netcoreapp2.0\Ludo.dll
+C:\Users\vinic\Desktop\Ludo\bin\Debug\netcoreapp2.0\Ludo.pdb
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.csprojAssemblyReference.cache
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.csproj.CoreCompileInputs.cache
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.AssemblyInfoInputs.cache
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.AssemblyInfo.cs
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.dll
+C:\Users\vinic\Desktop\Ludo\obj\Debug\netcoreapp2.0\Ludo.pdb
