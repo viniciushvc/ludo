@@ -1,8 +1,22 @@
-﻿td {
+﻿body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.container {
+    margin-top: 4rem;
+}
+
+td {
     height: 40px;
     width: 40px;
     text-align: center;
-    color: #FFF;    
+    color: #444;    
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+.texto-verde {
+    color: #28a745;
 }
 
 .verde {
@@ -10,9 +24,23 @@
     background-color: #28a745;
 }
 
+.verde-claro {
+    border: 3px solid #000;
+    background-color: #49d86a;
+}
+
+.texto-vermelho {
+    color: #dc3545;
+}
+
 .vermelho {
     border: 3px solid #000;
     background-color: #dc3545;
+}
+
+.vermelho-claro {
+    border: 3px solid #000;
+    background-color: #ff6674;
 }
 
 .amarelo {
@@ -20,8 +48,9 @@
     background-color: #ffc107;
 }
 
-.branco {
-    background-color: #FFF;
+.amarelo-claro {
+    border: 3px solid #000;
+    background-color: #ffd763;
 }
 
 .azul {
@@ -29,6 +58,90 @@
     background-color: #007bff;
 }
 
+.azul-claro {
+    border: 3px solid #000;
+    background-color: #51a5ff;
+}
+
+.branco {
+    background-color: #FFF;
+}
+
 .preto {
     border: 3px solid #000;
+}
+
+.text-white {
+    color: #FFF;
+}
+
+.stats{
+    border: 3px solid #000;
+}
+
+.titulo {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.vez {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    padding: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.dado {
+    height: 100px;
+    line-height: 90px;
+    text-align: center;
+    border: 2px solid #666;
+    border-radius: 10px;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.dado-numero {
+    font-size: 3rem;
+    margin: 0 auto;
+    color: #333;
+}
+
+.dado-botao {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    cursor: pointer;
+}
+
+.dado-botao:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
 }
