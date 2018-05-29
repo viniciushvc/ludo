@@ -11,15 +11,13 @@
 $('#start').click(function () {
 
     $.ajax({
-        url: 'Home/TotalJogador',
+        url: 'Home/TotalJogadores',
         type: "POST",
-        data: { total: $('#total').val() },
-        success: function (data) {
-
-            $('.boas-vindas').fadeOut('fast', function () {
-                $('.ludo').slideDown('fast');
-            });
-        }
+        data: { total: $('#total').val() }
+    }).done(function () {
+        $('.boas-vindas').fadeOut('fast', function () {
+            $('.ludo').slideDown('fast');
+        });
     });
 });
 
@@ -33,18 +31,24 @@ $('.jogar-dado').click(function () {
         success: function (data) {
 
             $('.dado-numero').text(data);
+
+            Jogada(data);
         }
     });
 });
 
-$('#add').click(function () {
+function Jogada(dado) {
+
+    let peca = 1;
 
     $.ajax({
-        url: 'Home/TotalJogadores',
+        url: 'Home/Jogada',
         type: "POST",
+        data: { jogador: 1, dado: dado, peca: peca },
         success: function (data) {
 
-            $('#total').val(data);
+            if (data !== 0)
+                $('#' + data[peca - 1].posicao).addClass('bg-success');
         }
     });
-});
+}

@@ -1,22 +1,25 @@
-﻿@*<div class="container mt-5 boas-vindas">
-    <div class="row justify-content-md-center">
-        <div class="col-lg-4">
+﻿@if (!ViewBag.Iniciado)
+{
+    <div class="container mt-5 boas-vindas">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4">
 
-            <form class="form-inline">
+                <form class="form-inline">
 
-                <div class="form-group mb-2">
-                    <input id="total" type="text" class="form-control" placeholder="Total de jogadores">
-                </div>
+                    <div class="form-group mb-2">
+                        <input id="total" type="text" class="form-control" placeholder="Total de jogadores">
+                    </div>
 
-                <button id="start" type="button" class="btn btn-success mb-2 ml-3">Jogar!</button>
+                    <button id="start" type="button" class="btn btn-success mb-2 ml-3">Jogar!</button>
 
-            </form>
+                </form>
 
+            </div>
         </div>
     </div>
-</div>*@
+}
 
-<div class="container mt-5 ludo">
+<div class="container mt-5 ludo" style="display: none;">
     <div class="row">
         <div class="col-md-8">
 
@@ -42,15 +45,15 @@
                     <td class="vermelho">
                     </td>
 
-                    <td class="preto">
+                    <td id="55" class="preto">
                         55
                     </td>
 
-                    <td class="preto">
+                    <td id="56" class="preto">
                         56
                     </td>
 
-                    <td class="preto">
+                    <td id="1" class="preto">
                         1
                     </td>
 
@@ -94,7 +97,7 @@
                     <td class="vermelho">
                     </td>
 
-                    <td class="preto">
+                    <td id="54" class="preto">
                         54
                     </td>
 
@@ -102,7 +105,7 @@
 
                     </td>
 
-                    <td class="verde text-white">
+                    <td id="2" class="verde text-white">
                         2
                     </td>
 
@@ -146,14 +149,14 @@
                     <td class="vermelho">
                     </td>
 
-                    <td class="preto">
+                    <td id="53" class="preto">
                         53
                     </td>
 
                     <td class="verde">
                     </td>
 
-                    <td class="preto">
+                    <td id="3" class="preto">
                         3
                     </td>
 
@@ -197,14 +200,14 @@
                     <td class="vermelho">
                     </td>
 
-                    <td class="preto">
+                    <td id="52" class="preto">
                         52
                     </td>
 
                     <td class="verde">
                     </td>
 
-                    <td class="preto">
+                    <td id="4" class="preto">
                         4
                     </td>
 
@@ -299,14 +302,14 @@
                     <td class="vermelho">
                     </td>
 
-                    <td class="preto">
+                    <td id="50" class="preto">
                         50
                     </td>
 
                     <td class="verde">
                     </td>
 
-                    <td class="preto">
+                    <td id="6" class="preto">
                         6
                     </td>
 
@@ -332,62 +335,62 @@
 
                 <tr>
 
-                    <td class="preto">
+                    <td id="43" class="preto">
                         43
                     </td>
 
-                    <td class="vermelho text-white">
+                    <td id="44" class="vermelho text-white">
                         44
                     </td>
 
-                    <td class="preto">
+                    <td id="45" class="preto">
                         45
                     </td>
 
-                    <td class="preto">
+                    <td id="46" class="preto">
                         46
                     </td>
 
-                    <td class="preto">
+                    <td id="47" class="preto">
                         47
                     </td>
 
-                    <td class="preto">
+                    <td id="48" class="preto">
                         48
                     </td>
 
-                    <td class="branco">
+                    <td id="49" class="branco">
                         49
                     </td>
 
                     <td class="verde">
                     </td>
 
-                    <td class="branco">
+                    <td id="7" class="branco">
                         7
                     </td>
 
-                    <td class="preto">
+                    <td id="8" class="preto">
                         8
                     </td>
 
-                    <td class="preto">
+                    <td id="9" class="preto">
                         9
                     </td>
 
-                    <td class="preto">
+                    <td id="10" class="preto">
                         10
                     </td>
 
-                    <td class="preto">
+                    <td id="11" class="preto">
                         11
                     </td>
 
-                    <td class="preto">
+                    <td id="12" class="preto">
                         12
                     </td>
 
-                    <td class="preto">
+                    <td id="13" class="preto">
                         13
                     </td>
 
@@ -395,7 +398,7 @@
 
                 <tr>
 
-                    <td class="preto">
+                    <td id="42" class="preto">
                         42
                     </td>
 
@@ -439,7 +442,7 @@
                     <td class="amarelo">
                     </td>
 
-                    <td class="preto">
+                    <td id="14" class="preto">
                         14
                     </td>
 
@@ -447,27 +450,27 @@
 
                 <tr>
 
-                    <td class="preto">
+                    <td id="41" class="preto">
                         41
                     </td>
 
-                    <td class="preto">
+                    <td id="40" class="preto">
                         40
                     </td>
 
-                    <td class="preto">
+                    <td id="39" class="preto">
                         39
                     </td>
 
-                    <td class="preto">
+                    <td id="38" class="preto">
                         38
                     </td>
 
-                    <td class="preto">
+                    <td id="37" class="preto">
                         37
                     </td>
 
-                    <td class="preto">
+                    <td id="36" class="preto">
                         36
                     </td>
 
@@ -478,31 +481,31 @@
                     <td class="azul">
                     </td>
 
-                    <td class="branco">
+                    <td id="21" class="branco">
                         21
                     </td>
 
-                    <td class="preto">
+                    <td id="20" class="preto">
                         20
                     </td>
 
-                    <td class="preto">
+                    <td id="19" class="preto">
                         19
                     </td>
 
-                    <td class="preto">
+                    <td id="18" class="preto">
                         18
                     </td>
 
-                    <td class="preto">
+                    <td id="17" class="preto">
                         17
                     </td>
 
-                    <td class="amarelo text-white">
+                    <td id="16" class="amarelo text-white">
                         16
                     </td>
 
-                    <td class="preto">
+                    <td id="15" class="preto">
                         15
                     </td>
 
@@ -528,14 +531,14 @@
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="34" class="preto">
                         34
                     </td>
 
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="22" class="preto">
                         22
                     </td>
 
@@ -579,14 +582,14 @@
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="33" class="preto">
                         33
                     </td>
 
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="23" class="preto">
                         23
                     </td>
 
@@ -630,14 +633,14 @@
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="32" class="preto">
                         32
                     </td>
 
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="24" class="preto">
                         24
                     </td>
 
@@ -681,14 +684,14 @@
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="31" class="preto">
                         31
                     </td>
 
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="25" class="preto">
                         25
                     </td>
 
@@ -732,14 +735,14 @@
                     <td class="azul">
                     </td>
 
-                    <td class="azul text-white">
+                    <td id="30" class="azul text-white">
                         30
                     </td>
 
                     <td class="azul">
                     </td>
 
-                    <td class="preto">
+                    <td id="26" class="preto">
                         26
                     </td>
 
@@ -771,15 +774,15 @@
 
                     <td class="azul" />
 
-                    <td class="preto">
+                    <td id="29" class="preto">
                         29
                     </td>
 
-                    <td class="preto">
+                    <td id="28" class="preto">
                         28
                     </td>
 
-                    <td class="preto">
+                    <td id="27" class="preto">
                         27
                     </td>
 
@@ -820,14 +823,7 @@
                     <button class="btn btn-success jogar-dado">Jogar dado</button>
 
                 </div>
-
             </div>
-
         </div>
     </div>
-
-    <input id="total">
-
-    <button id="add"></button>
 </div>
-
