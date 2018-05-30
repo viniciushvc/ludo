@@ -6,6 +6,16 @@ namespace Ludo.Models
     public class Jogo
     {
         public List<Jogador> jogador = new List<Jogador>();
+
+        public void NovoJogador()
+        {
+            jogador.Add(new Jogador());
+        }
+
+        public int JogarDado()
+        {
+            return new Random().Next(1, 7);
+        }
     }
 
     public class Jogador

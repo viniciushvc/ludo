@@ -18,43 +18,69 @@ namespace Ludo.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Title"] = "Torresminha";
-
+            //Previne atualizar página e perguntar quantidade de jogadores
             ViewBag.Iniciado = jogo.jogador.Count > 0 ? true : false;
 
             return View();
         }
 
-        [HttpPost]
-        public void TotalJogadores(int total)
-        {
-            for (int i = 0; i < total; i++)
-                jogo.jogador.Add(new Jogador());
-        }
+        #region Get
 
         [HttpGet]
         public JsonResult JogarDado()
         {
-            return Json(new Random().Next(1, 7));
+            return Json(jogo.JogarDado());
+        }
+
+        #endregion
+
+        #region Post
+
+        /// <summary>
+        /// Adiciona jogadores a partida, min 2 - máx 4
+        /// </summary>
+        /// <param name="total">Total de jogadores informado pelo usuário</param>
+        [HttpPost]
+        public bool TotalJogadores(int total)
+        {
+            //Validação no back-end
+            if (total > 1 && total < 5)
+            {
+                for (int i = 0; i < total; i++)
+                    jogo.NovoJogador();
+
+                return true;
+            }
+
+            return false;
         }
 
         [HttpPost]
-        public JsonResult Jogada(int jogador, int dado, int peca)
+        public JsonResult MoverPeca(int jogador, int dado, int peca)
         {
-            if ((dado == 1 || dado == 6) && jogo.jogador[jogador - 1].peca.Count < 4)
+            if (jogo.jogador[jogador].peca.Count != 0)
             {
-                jogo.jogador[jogador - 1].peca.Add(new Peca());
+                jogo.jogador[jogador].peca[peca].posicao += dado;
 
-                return Json(jogo.jogador[jogador - 1].peca);
-            }
-            else if (jogo.jogador[jogador - 1].peca.Count != 0)
-            {
-                jogo.jogador[jogador - 1].peca[peca-1].posicao += dado;
-
-                return Json(jogo.jogador[jogador - 1].peca);
+                return Json(jogo.jogador[jogador].peca);
             }
 
             return Json(0);
         }
-    }
+
+        [HttpPost]
+        public JsonResult RetirarPeca(int jogador)
+        {
+            jogo.jogador[jogador].peca.Add(new Peca());
+
+            var peca = jogo.jogador[jogador].peca.Count;
+
+            //Retirar 1, espera um vetor
+            return Json(peca-1);
+        }
+
+        #endregion
+
+
+        }
 }

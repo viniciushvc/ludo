@@ -7,6 +7,16 @@
     font-weight: 600;
 }
 
+.torre-0 {
+    color: #fff;
+    background: green;
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    line-height: 40px;
+    border-radius: 50%;
+}
+
 .texto-verde {
     color: #28a745;
 }
@@ -25,6 +35,16 @@
     color: #dc3545;
 }
 
+.torre-3 {
+    color: #fff;
+    background: red;
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    line-height: 40px;
+    border-radius: 50%;
+}
+
 .vermelho {
     border: 3px solid #000;
     background-color: #dc3545;
@@ -35,6 +55,16 @@
     background-color: #ff6674;
 }
 
+.torre-1 {
+    color: #444;
+    background: yellow;
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    line-height: 40px;
+    border-radius: 50%;
+}
+
 .amarelo {
     border: 3px solid #000;
     background-color: #ffc107;
@@ -43,6 +73,16 @@
 .amarelo-claro {
     border: 3px solid #000;
     background-color: #ffd763;
+}
+
+.torre-2 {
+    color: #fff;
+    background: blue;
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    line-height: 40px;
+    border-radius: 50%;
 }
 
 .azul {
