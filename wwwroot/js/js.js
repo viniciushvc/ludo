@@ -5,9 +5,9 @@ let primeraVez = true;
 /**
  * Previnir F5 na página
  */
-// $(window).bind('beforeunload', function () {
-//     return 'A partida será resetada';
-// });
+ $(window).bind('beforeunload', function () {
+     return 'A partida será resetada';
+ });
 
 /**
  * Inicia jogo
@@ -44,14 +44,18 @@ function JogarDado() {
 
             dado = data;
 
-            if (data == 6 || data == 1)
+            if (data == 6 || data == 1) {
                 $('.btn-info').fadeIn();
-
-            $('.btn-primary').fadeIn();
+                $('.jogar-dado').attr('disabled', true);
+            }
 
             $('#peca').focus();
 
+            PossuiPeca();
+
             VezJogador();
+
+            PecasJogador();
         }
     });
 }
@@ -95,28 +99,28 @@ function MoverPeca() {
 
                     else if (index > 55 && index < 62) {
                         if (val.pecas.length > 0) {
-                            num = val.pecas.length;
+                            num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
                             $("#" + index).text(num);
                         }
                     }
 
                     else if (index > 61 && index < 68) {
                         if (val.pecas.length > 0) {
-                            num = val.pecas.length;
+                            num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
                             $("#" + index).text(num);
                         }
                     }
 
                     else if (index > 67 && index < 74) {
                         if (val.pecas.length > 0) {
-                            num = val.pecas.length;
+                            num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
                             $("#" + index).text(num);
                         }
                     }
 
                     else if (index > 75 && index < 82) {
                         if (val.pecas.length > 0) {
-                            num = val.pecas.length;
+                            num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
                             $("#" + index).text(num);
                         }
                     }
@@ -128,7 +132,9 @@ function MoverPeca() {
 
                 $('.btn-primary').fadeOut();
 
-                $('#peca').val('');
+                $('#peca').val('').fadeOut();
+
+                $('.jogar-dado').attr('disabled', false);
             }
         });
     } else
@@ -175,7 +181,9 @@ function RetirarPeca() {
 
             $('.btn-primary').fadeOut();
 
-            $('#peca').val('');
+            $('#peca').val('').fadeOut();
+
+            $('.jogar-dado').attr('disabled', false);
         }
     });
 }
@@ -186,6 +194,15 @@ function PossuiPeca() {
         url: 'Home/PossuiPeca',
         type: "GET",
         success: function (data) {
+
+            if (data) {
+                $('.jogar-dado').attr('disabled', true);
+                $('.btn-primary').fadeIn();
+                $('#peca').fadeIn();
+            }
+
+            else
+                $('.jogar-dado').attr('disabled', false);
 
             return data;
         }
@@ -213,6 +230,19 @@ function VezJogador() {
         success: function (data) {
 
             $('.vez-jogador').text(data);
+        }
+    });
+}
+
+function PecasJogador() {
+
+    $.ajax({
+        url: 'Home/PecasJogador',
+        type: "GET",
+        success: function (data) {
+
+            if (data == 4)
+                $('.btn-info').fadeOut();
         }
     });
 }

@@ -61,7 +61,8 @@ namespace Ludo.Controllers
         [HttpPost]
         public JsonResult MoverPeca(int dado, int peca)
         {
-            jogo.MoverPeca(peca, dado);
+            if (jogo.PossuiPeca())
+                jogo.MoverPeca(peca, dado);
 
             return Json(jogo.tabuleiro);
         }
@@ -96,6 +97,12 @@ namespace Ludo.Controllers
             var ganhador = jogo.VerificaGanhou();
 
             return Json(ganhador);
+        }
+
+        [HttpGet]
+        public JsonResult PecasJogador()
+        {
+            return Json(jogo.PecasJogador());
         }
 
         #endregion
