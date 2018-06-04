@@ -1,4 +1,6 @@
-﻿let total;
+﻿let dado;
+
+let primeraVez = true;
 
 /**
  * Previnir F5 na página
@@ -12,109 +14,205 @@
  */
 $('#start').click(function () {
 
-    total = parseInt($('#total').val());
+    $.ajax({
+        url: 'Home/TotalJogadores',
+        type: "POST",
+        data: { total: $('#total').val() },
+        success: function (data) {
 
-    //Validação no front-end
-    if (total > 1 && total < 5) {
-        $.ajax({
-            url: 'Home/TotalJogadores',
-            type: "POST",
-            data: { total: total },
-            success: function (data) {
+            if (data) {
 
-                if (data) {
-
-                    $('.boas-vindas').fadeOut('fast', function () {
-                        $('.ludo').slideDown('fast');
-                    });
-                } 
+                $('.boas-vindas').fadeOut('fast', function () {
+                    $('.ludo').slideDown('fast');
+                });
             }
-        });
-    } else
-        alert('min 2 - máx 4');
+        }
+    });
 });
 
-/**
- * Jogar o dado
- */
-$('.jogar-dado').click(function () {
+function JogarDado() {
 
     $.ajax({
         url: 'Home/JogarDado',
+        type: "GET",
+        data: { primeiraVez: primeraVez },
         success: function (data) {
+
+            primeraVez = false;
 
             $('.dado-numero').text(data);
 
-            //Dispara quando cai 1 ou 6
-            if (parseInt(data) === 1 || parseInt(data) === 6) {
+            dado = data;
 
-                //Pergunta quer mover ou retirar peça
-                if (RestaTorre(0)) {
+            if (data == 6 || data == 1)
+                $('.btn-info').fadeIn();
 
-                    //Mostra botões
-                    $('.acao').fadeIn('fast', function () {
+            $('.btn-primary').fadeIn();
 
-                        //Clicou em retirar
-                        $('#retirar').click(function () {
-                            RetirarPeca(0);
-                        });
+            $('#peca').focus();
 
-                        //Clicou em mover
+            VezJogador();
+        }
+    });
+}
 
-                    });
-                }
+function MoverPeca() {
+
+    if ($('#peca').val() != '') {
+
+        $.ajax({
+            url: 'Home/MoverPeca',
+            type: "POST",
+            data: { dado: dado, peca: $('#peca').val() },
+            success: function (data) {
+
+                $.each(data, function (index, val) {
+
+                    if (index > 55)
+                        $("#" + index).text('');
+
+                    if (index < 56) {
+                        $("#" + index).removeClass('verde amarelo azul vermelho').addClass('preto').text('');
+
+                        if (val.pecas[0] !== undefined) {
+                            num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
+
+                            $("#" + index).text(num);
+
+                            if (val.pecas[0].jogador === 0)
+                                $("#" + index).addClass('verde');
+
+                            if (val.pecas[0].jogador === 1)
+                                $("#" + index).addClass('amarelo');
+
+                            if (val.pecas[0].jogador === 2)
+                                $("#" + index).addClass('azul');
+
+                            if (val.pecas[0].jogador === 3)
+                                $("#" + index).addClass('vermelho');
+                        }
+                    }
+
+                    else if (index > 55 && index < 62) {
+                        if (val.pecas.length > 0) {
+                            num = val.pecas.length;
+                            $("#" + index).text(num);
+                        }
+                    }
+
+                    else if (index > 61 && index < 68) {
+                        if (val.pecas.length > 0) {
+                            num = val.pecas.length;
+                            $("#" + index).text(num);
+                        }
+                    }
+
+                    else if (index > 67 && index < 74) {
+                        if (val.pecas.length > 0) {
+                            num = val.pecas.length;
+                            $("#" + index).text(num);
+                        }
+                    }
+
+                    else if (index > 75 && index < 82) {
+                        if (val.pecas.length > 0) {
+                            num = val.pecas.length;
+                            $("#" + index).text(num);
+                        }
+                    }
+                });
+
+                VerificaGanhou();
+
+                $('.btn-info').fadeOut();
+
+                $('.btn-primary').fadeOut();
+
+                $('#peca').val('');
             }
-
-            Jogada(data);
-        }
-    });
-});
-
-/**
- * Mover peça
- * @param {any} dado
- */
-function Jogada(dado) {
-
-    let peca = 0;
-
-    $.ajax({
-        url: 'Home/MoverPeca',
-        type: "POST",
-        data: { jogador: 0, dado: dado, peca: peca },
-        success: function (data) {
-
-            if (data !== 0)
-                $('#' + data[peca].posicao).addClass('bg-success');
-        }
-    });
+        });
+    } else
+        alert('Informe a peça');
 }
 
-function RestaTorre(jogador) {
-
-    let count = $('.valida-' + jogador).length;
-
-    if (count > 1)
-        return true;
-
-    return false;
-}
-
-function RetirarPeca(jogador) {
+function RetirarPeca() {
 
     $.ajax({
         url: 'Home/RetirarPeca',
         type: "POST",
-        data: { jogador: 0 },
+        data: { dado: dado },
         success: function (data) {
 
-            let peca = $('#' + jogador + '-' + data);
+            $.each(data, function (index, val) {
 
-            let clone = peca.text();
+                if (index < 56) {
+                    $("#" + parseInt(index)).removeClass('verde amarelo azul vermelho').addClass('preto').text('');
 
-            peca.removeClass('valida-' + jogador + ' torre-' + jogador).text('').addClass('verde-claro');
+                    if (val.pecas[0] !== undefined) {
+                        num = val.pecas[0].numeroPeca + '-' + val.pecas.length;
 
-            $('#1').addClass;
+                        $("#" + index).text(num);
+
+                        if (val.pecas[0].jogador === 0)
+                            $("#" + index).addClass('verde');
+
+                        if (val.pecas[0].jogador === 1)
+                            $("#" + index).addClass('amarelo');
+
+                        if (val.pecas[0].jogador === 2)
+                            $("#" + index).addClass('azul');
+
+                        if (val.pecas[0].jogador === 3)
+                            $("#" + index).addClass('vermelho');
+                    }
+                }
+
+            });
+
+            VerificaGanhou();
+
+            $('.btn-info').fadeOut();
+
+            $('.btn-primary').fadeOut();
+
+            $('#peca').val('');
+        }
+    });
+}
+
+function PossuiPeca() {
+
+    $.ajax({
+        url: 'Home/PossuiPeca',
+        type: "GET",
+        success: function (data) {
+
+            return data;
+        }
+    });
+}
+
+function VerificaGanhou() {
+
+    $.ajax({
+        url: 'Home/VerificaGanhou',
+        type: "GET",
+        success: function (data) {
+
+            if (data != null)
+                alert(data);
+        }
+    });
+}
+
+function VezJogador() {
+
+    $.ajax({
+        url: 'Home/VezJogador',
+        type: "GET",
+        success: function (data) {
+
+            $('.vez-jogador').text(data);
         }
     });
 }

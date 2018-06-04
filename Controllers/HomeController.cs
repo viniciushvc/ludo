@@ -27,9 +27,14 @@ namespace Ludo.Controllers
         #region Get
 
         [HttpGet]
-        public JsonResult JogarDado()
+        public JsonResult JogarDado(bool primeiraVez)
         {
-            return Json(jogo.JogarDado());
+            var dado = jogo.JogarDado();
+
+            if (!jogo.JogarNovamente(dado) && !primeiraVez)
+                jogo.ProximoJogador(dado);
+
+            return Json(dado);
         }
 
         #endregion
@@ -53,32 +58,47 @@ namespace Ludo.Controllers
             return false;
         }
 
-        //[HttpPost]
-        //public JsonResult MoverPeca(int jogador, int dado, int peca)
-        //{
-        //    if (jogo.jogador[jogador].peca.Count != 0)
-        //    {
-        //        jogo.jogador[jogador].peca[peca].posicao += dado;
+        [HttpPost]
+        public JsonResult MoverPeca(int dado, int peca)
+        {
+            jogo.MoverPeca(peca, dado);
 
-        //        return Json(jogo.jogador[jogador].peca);
-        //    }
+            return Json(jogo.tabuleiro);
+        }
 
-        //    return Json(0);
-        //}
+        [HttpGet]
+        public JsonResult VezJogador()
+        {
+            var corJogador = new string[] { "Verde", "Amarelo", "Azul", "Vermelho" };
 
-        //[HttpPost]
-        //public JsonResult RetirarPeca(int jogador)
-        //{
-        //    jogo.jogador[jogador].peca.Add(new Peca());
+            return Json(corJogador[jogo.vezJogador]);
+        }
 
-        //    var peca = jogo.jogador[jogador].peca.Count;
+        [HttpGet]
+        public JsonResult PossuiPeca()
+        {
+            return Json(jogo.PossuiPeca());
+        }
 
-        //    //Retirar 1, espera um vetor
-        //    return Json(peca-1);
-        //}
+        [HttpPost]
+        public JsonResult RetirarPeca(int dado)
+        {
+            if (jogo.PodeRetirarPeca(dado))
+                jogo.RetirarPeca();
+
+            return Json(jogo.tabuleiro);
+        }
+
+
+        [HttpGet]
+        public JsonResult VerificaGanhou()
+        {
+            var ganhador = jogo.VerificaGanhou();
+
+            return Json(ganhador);
+        }
 
         #endregion
-
 
     }
 }
